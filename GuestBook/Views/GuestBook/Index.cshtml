@@ -1,10 +1,49 @@
 ﻿@model GuestBookApp.Models.IndexModel
 
 <div class="container mt-5">
+    <!-- Заголовок -->
     <h1 class="text-center">Гостевая книга</h1>
 
-    @if (Context.Session.GetString("UserName") != null)
-    {
+    <!-- Блок входа -->
+    <div id="login-section" class="d-none">
+        <h2 class="text-center">Вход в систему</h2>
+        <form id="loginForm" method="post" asp-action="Login" class="mt-4">
+            <div class="mb-3">
+                <label for="LoginName" class="form-label">Логин</label>
+                <input type="text" name="LoginName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Пароль</label>
+                <input type="password" name="Password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+            <button type="button" class="btn btn-link" onclick="showRegistration()">Регистрация</button>
+        </form>
+    </div>
+
+    <!-- Блок регистрации -->
+    <div id="registration-section" class="d-none">
+        <h2 class="text-center">Регистрация</h2>
+        <form id="registrationForm" method="post" asp-action="Registration" class="mt-4">
+            <div class="mb-3">
+                <label for="LoginName" class="form-label">Логин</label>
+                <input type="text" name="LoginName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Пароль</label>
+                <input type="password" name="Password" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="ConfirmPassword" class="form-label">Подтвердите пароль</label>
+                <input type="password" name="ConfirmPassword" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Регистрация</button>
+            <button type="button" class="btn btn-link" onclick="showLogin()">Вход в систему</button>
+        </form>
+    </div>
+
+    <!-- Основной блок гостевой книги -->
+    <div id="guestbook-section" class="d-none">
         <div class="mb-4">
             <form id="addMessageForm" method="post" asp-action="AddMessage" class="mb-3">
                 <div class="form-group">
@@ -16,36 +55,75 @@
                 <button type="submit" class="btn btn-secondary">Выход</button>
             </form>
         </div>
-    }
-    else
-    {
-        <div class="text-center mb-4">
-            <a asp-action="Login" class="btn btn-success">Вход в систему</a>
-            <a asp-action="Registration" class="btn btn-warning">Регистрация</a>
-        </div>
-    }
 
-    <div id="messages-container">
-        @foreach (var message in Model.Messages)
-        {
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Логин: @message.User.Name</h5>
-                    <p class="card-text">Сообщение: @message.MessageText</p>
-                    <p class="card-text"><small class="text-muted">Дата: @message.MessageDate</small></p>
+        <div id="messages-container">
+            @foreach (var message in Model.Messages)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Логин: @message.User.Name</h5>
+                        <p class="card-text">Сообщение: @message.MessageText</p>
+                        <p class="card-text"><small class="text-muted">Дата: @message.MessageDate</small></p>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    <script>$(document).ready(function () {
-            $('#addMessageForm').submit(function (event) {
-                event.preventDefault(); 
-                var form = $(this);
-                var formData = form.serialize(); 
+    <script>
+        $(document).ready(function () {
+            // Показываем нужный блок в зависимости от состояния
+            if ('@Context.Session.GetString("UserName")' !== '') {
+                showGuestbook();
+            } else {
+                showLogin();
+            }
 
+            // Форма входа
+            $('#loginForm').submit(function (event) {
+                event.preventDefault();
+                var form = $(this);
+                var formData = form.serialize();
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            showGuestbook();
+                        } else {
+                            alert("Ошибка при входе.");
+                        }
+                    }
+                });
+            });
+
+            // Форма регистрации
+            $('#registrationForm').submit(function (event) {
+                event.preventDefault();
+                var form = $(this);
+                var formData = form.serialize();
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            showLogin();
+                        } else {
+                            alert("Ошибка при регистрации.");
+                        }
+                    }
+                });
+            });
+
+            // Форма добавления сообщения
+            $('#addMessageForm').submit(function (event) {
+                event.preventDefault();
+                var form = $(this);
+                var formData = form.serialize();
                 $.ajax({
                     type: "POST",
                     url: form.attr('action'),
@@ -59,12 +137,31 @@
                                 '<p class="card-text"><small class="text-muted">Дата: ' + response.date + '</small></p>' +
                                 '</div></div>';
                             $('#messages-container').append(newMessageHtml);
-                            $('textarea[name="newMessage"]').val(''); 
+                            $('textarea[name="newMessage"]').val('');
                         } else {
                             alert("Ошибка при добавлении сообщения.");
                         }
                     }
                 });
             });
-        });</script>
+        });
+
+        function showLogin() {
+            $('#login-section').removeClass('d-none');
+            $('#registration-section').addClass('d-none');
+            $('#guestbook-section').addClass('d-none');
+        }
+
+        function showRegistration() {
+            $('#login-section').addClass('d-none');
+            $('#registration-section').removeClass('d-none');
+            $('#guestbook-section').addClass('d-none');
+        }
+
+        function showGuestbook() {
+            $('#login-section').addClass('d-none');
+            $('#registration-section').addClass('d-none');
+            $('#guestbook-section').removeClass('d-none');
+        }
+    </script>
 }

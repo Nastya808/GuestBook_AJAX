@@ -9,45 +9,33 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GuestBook
 build_property.RootNamespace = GuestBook
-build_property.ProjectDir = /Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/
+build_property.ProjectDir = /Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook
+build_property.MSBuildProjectDirectory = /Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/GuestBook/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3Vlc3RCb29rL0Vycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/GuestBook/Index.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/GuestBook/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3Vlc3RCb29rL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/GuestBook/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3Vlc3RCb29rL0xvZ2luLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/GuestBook/Registration.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3Vlc3RCb29rL1JlZ2lzdHJhdGlvbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/Shared/Error.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/_ViewImports.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/_ViewStart.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/Views/Shared/_Layout.cshtml]
+[/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1lqb0spky9

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lPz4u7032sf1W2MQWIuh7XYvubHe25M+9cQ5IcQXOUOk7Zh0DG1YF6WX30hxc6f085UawfFnEhoApvHxI8BlXA==",
+  "dgSpecHash": "kyKaclMJmQ41a/888iwonPATueG3juAIqHm3OgQlEf0UR1ee2Tdjqw4Zp7NoyyDxz4EhWWiBBzsqv4FMV8Ho5Q==",
   "success": true,
-  "projectFilePath": "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/GuestBook.csproj",
+  "projectFilePath": "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/GuestBook.csproj",
   "expectedPackageFiles": [
     "/Users/nastyaergenova/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/nastyaergenova/.nuget/packages/microsoft.aspnetcore.cryptography.internal/1.1.3/microsoft.aspnetcore.cryptography.internal.1.1.3.nupkg.sha512",

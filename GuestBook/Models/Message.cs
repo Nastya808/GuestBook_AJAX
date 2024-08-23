@@ -7,6 +7,6 @@
         public string? MessageText { get; set; }
         public DateTime MessageDate { get; set; }
 
-        public User User { get; set; } = new User();  
+        public User User { get; set; } = new User();
     }
 }

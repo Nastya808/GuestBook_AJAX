@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{C435EDD6-997F-4A38-80A0-87BF0CD73EA7}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="GuestBook/Views/GuestBook/Index.cshtml">
+    <Files>
+      <File FileName="GuestBook/Views/GuestBook/Index.cshtml" Line="168" Column="1" />
+      <File FileName="GuestBook/Controllers/GuestBookController.cs" Line="95" Column="1" />
+      <File FileName="GuestBook/Models/IndexModel.cs" Line="9" Column="1" />
+      <File FileName="GuestBook/Models/LoginModel.cs" Line="1" Column="1" />
+      <File FileName="GuestBook/Models/RegistrationModel.cs" Line="1" Column="1" />
+      <File FileName="GuestBook/Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="GuestBook/Models/User.cs" Line="1" Column="1" />
+      <File FileName="GuestBook/Models/Message.cs" Line="13" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GuestBook">
+            <Node name="GuestBook">
+              <Node name="Data" expanded="True" />
+              <Node name="Views">
+                <Node name="GuestBook" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.GuestBook PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

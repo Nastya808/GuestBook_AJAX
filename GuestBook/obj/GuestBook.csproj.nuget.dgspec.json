@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/GuestBook.csproj": {}
+    "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/GuestBook.csproj": {}
   },
   "projects": {
-    "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/GuestBook.csproj": {
+    "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/GuestBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/GuestBook.csproj",
+        "projectUniqueName": "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/GuestBook.csproj",
         "projectName": "GuestBook",
-        "projectPath": "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/GuestBook.csproj",
+        "projectPath": "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/GuestBook.csproj",
         "packagesPath": "/Users/nastyaergenova/.nuget/packages/",
-        "outputPath": "/Users/nastyaergenova/Projects/GuestBook/GuestBook 2/GuestBook/obj/",
+        "outputPath": "/Users/nastyaergenova/Documents/GitHub/GuestBook_AJAX/GuestBook/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/nastyaergenova/.nuget/NuGet/NuGet.Config"
