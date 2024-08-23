@@ -1,0 +1,18 @@
+﻿@model GuestBookApp.Models.LoginModel
+
+<div class="container mt-5">
+    <h1 class="text-center">Вход в систему</h1>
+
+    <form method="post" asp-action="Login" class="mt-4">
+        <div class="mb-3">
+            <label for="LoginName" class="form-label">Логин</label>
+            <input type="text" name="LoginName" asp-for="LoginName" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="Password" class="form-label">Пароль</label>
+            <input type="password" name="Password" asp-for="Password" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+        <a asp-action="Registration" class="btn btn-link">Регистрация</a>
+    </form>
+</div>

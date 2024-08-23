@@ -1,0 +1,70 @@
+﻿@model GuestBookApp.Models.IndexModel
+
+<div class="container mt-5">
+    <h1 class="text-center">Гостевая книга</h1>
+
+    @if (Context.Session.GetString("UserName") != null)
+    {
+        <div class="mb-4">
+            <form id="addMessageForm" method="post" asp-action="AddMessage" class="mb-3">
+                <div class="form-group">
+                    <textarea name="newMessage" class="form-control" placeholder="Напишите ваше сообщение"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Добавить сообщение</button>
+            </form>
+            <form method="post" asp-action="Logout">
+                <button type="submit" class="btn btn-secondary">Выход</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mb-4">
+            <a asp-action="Login" class="btn btn-success">Вход в систему</a>
+            <a asp-action="Registration" class="btn btn-warning">Регистрация</a>
+        </div>
+    }
+
+    <div id="messages-container">
+        @foreach (var message in Model.Messages)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Логин: @message.User.Name</h5>
+                    <p class="card-text">Сообщение: @message.MessageText</p>
+                    <p class="card-text"><small class="text-muted">Дата: @message.MessageDate</small></p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('#addMessageForm').submit(function (event) {
+                event.preventDefault(); 
+                var form = $(this);
+                var formData = form.serialize(); 
+
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            var newMessageHtml = '<div class="card">' +
+                                '<div class="card-body">' +
+                                '<h5 class="card-title">Логин: ' + response.user + '</h5>' +
+                                '<p class="card-text">Сообщение: ' + response.message + '</p>' +
+                                '<p class="card-text"><small class="text-muted">Дата: ' + response.date + '</small></p>' +
+                                '</div></div>';
+                            $('#messages-container').append(newMessageHtml);
+                            $('textarea[name="newMessage"]').val(''); 
+                        } else {
+                            alert("Ошибка при добавлении сообщения.");
+                        }
+                    }
+                });
+            });
+        });</script>
+}
