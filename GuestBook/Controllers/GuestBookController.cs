@@ -1,25 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using GuestBookApp.Data;
 using GuestBookApp.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace GuestBookApp.Controllers
 {
     public class GuestBookController : Controller
     {
-        private readonly GuestBookContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly IRepository<Message> _messageRepository;
 
-        public GuestBookController(GuestBookContext context)
+        public GuestBookController(IUserRepository userRepository, IRepository<Message> messageRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _messageRepository = messageRepository;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string loginName, string password)
+        public async Task<IActionResult> Login(string name, string password)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Name == loginName && u.Pwd == password);
-            if (user != null)
+            var user = await _userRepository.GetByNameAsync(name); 
+            if (user != null && user.Pwd == password)
             {
                 HttpContext.Session.SetString("UserName", user.Name);
                 return Json(new { success = true });
@@ -28,67 +30,82 @@ namespace GuestBookApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registration(string loginName, string password, string confirmPassword)
+        public async Task<IActionResult> Registration(string name, string password, string confirmPassword)
         {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
+            {
+                return Json(new { success = false, message = "Name and password cannot be empty" });
+            }
+
             if (password != confirmPassword)
             {
                 return Json(new { success = false, message = "Passwords do not match" });
             }
 
-            var existingUser = await _context.Users.SingleOrDefaultAsync(u => u.Name == loginName);
+            var existingUser = await _userRepository.GetByNameAsync(name);
             if (existingUser != null)
             {
                 return Json(new { success = false, message = "User already exists" });
             }
 
-            var user = new User { Name = loginName, Pwd = password };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            var user = new User { Name = name, Pwd = password }; 
+            await _userRepository.AddAsync(user);
 
             return Json(new { success = true });
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddMessage(string newMessage)
         {
             var userName = HttpContext.Session.GetString("UserName");
-            if (!string.IsNullOrEmpty(newMessage) && userName != null)
+            if (string.IsNullOrEmpty(userName))
             {
-                var user = await _context.Users.SingleOrDefaultAsync(u => u.Name == userName);
-                if (user != null)
-                {
-                    var message = new Message
-                    {
-                        Id_User = user.Id,
-                        MessageText = newMessage,
-                        MessageDate = DateTime.Now
-                    };
-                    _context.Messages.Add(message);
-                    await _context.SaveChangesAsync();
+                return Json(new { success = false, message = "User is not logged in" });
+            }
 
-                    return Json(new
-                    {
-                        success = true,
-                        user = user.Name,
-                        message = message.MessageText,
-                        date = message.MessageDate.ToString("g")
-                    });
-                }
+            if (string.IsNullOrEmpty(newMessage))
+            {
+                return Json(new { success = false, message = "Message cannot be empty" });
+            }
+
+            var user = await _userRepository.GetByNameAsync(userName); 
+            if (user != null)
+            {
+                var message = new Message
+                {
+                    Id_User = user.Id,
+                    MessageText = newMessage,
+                    MessageDate = DateTime.Now
+                };
+                await _messageRepository.AddAsync(message);
+
+                return Json(new
+                {
+                    success = true,
+                    user = user.Name,
+                    message = message.MessageText,
+                    date = message.MessageDate.ToString("g")
+                });
             }
             return Json(new { success = false });
         }
 
+
+
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Remove("UserName");
-            return RedirectToAction("Index");
+            var userName = HttpContext.Session.GetString("UserName");
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Json(new { success = false, message = "User is not logged in" });
+            }
+
+            HttpContext.Session.Remove("UserName"); 
+            return Json(new { success = true });
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var messages = await _context.Messages.Include(m => m.User).ToListAsync();
-            return View(new IndexModel { Messages = messages });
-        }
+
     }
 }
